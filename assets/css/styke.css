@@ -1,0 +1,610 @@
+
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  /*========== Colors ==========*/
+  --first-color: hsl(354, 78%, 60%);
+  --button-color: hsl(0, 0%, 17%);
+  --button-color-alt: hsl(0, 0%, 21%);
+  --card-color: hsl(0, 0%, 90%);
+  --title-color: hsl(0, 0%, 15%);
+  --text-color: hsl(0, 0%, 35%);
+  --text-color-light: hsl(0, 0%, 55%);
+  --body-color: hsl(206, 4%, 97%);
+  --container-color: #fff;
+  --border-color: hsl(0, 0%, 94%);
+  --boton-color:  rgb(219, 199, 19);
+  --carrito:hsla(0, 33%, 98%, 0.452);
+  --fin-color: hsl(0, 1%, 64%);
+
+  /*========== Font and typography ==========*/
+  --body-font: 'Roboto', sans-serif;
+}
+
+/*=============== THEME ===============*/
+/*========== Variables Dark theme ==========*/
+/*
+    
+*/
+  
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    
+    font-family: var(--body-font) ;
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+body.dark{
+    --first-color: hsl(182, 53%, 74%);
+    --button-color: hsl(246, 16%, 12%);
+    --button-color-alt: hsl(0, 0%, 28%);
+    --card-color: hsla(246, 16%, 5%, .5);
+    --title-color: hsl(0, 0%, 95%);
+    --text-color: hsl(0, 0%, 75%);
+    --body-color: hsl(249, 19%, 14%);
+    --container-color: hsl(246, 16%, 12%);
+    --border-color: hsl(0, 0%, 20%);
+    --boton-color:  rgb(170, 39, 223);
+    --carrito:hsla(0, 0%, 45%, 0.603);
+    --fin-color: hsl(0, 5%, 29%);
+}
+
+img{
+    max-width: 100%;
+    display: block;
+}
+ul {
+    list-style: none;
+  }
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+.navbar{
+    display: flex;
+    padding: 0rem 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 4px hsl(0deg 4% 15% / 10%);
+    color: var(--title-color);
+}
+.navLogo:hover{
+    background-color: rgb(189, 77, 12);
+    color: var(--container-color);
+}
+.navLogo{
+    text-transform: uppercase;
+    font-weight: var(--text-color-light);
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.25rem;
+}
+.bx-grid-alt{
+    display: none;
+}
+
+.nav-logo{
+    width: 50px;
+    fill: var(--title-color);
+}
+
+.navMenu{
+    width: 100%;
+    width: 300px;
+    color: var(--text-color);
+    display: flex;
+   
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    
+}
+.navItem{
+    
+    padding: 1rem;
+   
+}
+.navItem:hover{
+    background-color: rgb(189, 77, 12);
+    color: var(--container-color);
+}
+.navItem a:hover{
+    color: var(--container-color);
+}
+.navList {
+    display: flex;
+    color: var(--text-color);
+    width: 100%;
+    height: 100%;
+    list-style: none;
+}
+.icons-wrapper{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 2rem;
+}
+main{
+    padding: 1.5rem;
+}
+h2{
+    color: var(--title-color);
+}
+section{
+    padding: 1rem 1.5rem;
+    background-color: var(--container-color);
+}
+.cart-container{
+    background-color: rgba(136, 143, 136, 0.61);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    transition: left .3s linear;
+    padding: 2.5rem 1.5rem 1.rem 1.5rem;
+}
+.cart-container.hide{
+left: -100%;
+}
+.nav-close:hover{
+color: aqua;
+}
+.nav-close.hide{
+    left: -100%;  
+}
+/*ver Carrito*/
+.modal-container{
+background-color: var(--container-color);
+width: 100%;
+height: 100%;
+max-width: 400px;
+position: fixed;
+display: none;
+flex-direction: column;
+align-items: center;
+overflow: auto;
+top: 0;
+right: 0;
+box-shadow: 0 1px 4px rgba(40, 37, 37, 0.233);
+padding: 3.5rem 1.5rem 1rem 1,5rem;
+z-index: 9;
+scrollbar-color: none;
+
+}
+.modal-header{
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--card-color);
+    color: var(--text-color);
+    width: 100%;
+   
+}
+.modal-header-titler{
+    justify-self: start;
+   
+}
+.modal-container{
+    gap: 1.5rem;
+}
+
+.modal-container >  .modal-content{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    left: -20%;
+    margin: 10px;
+    padding: 1rem;
+}
+
+.modal-container > div > img{
+    
+    height: 120px;
+     width: 120px;
+        
+}
+
+.modal-content h2{
+position: absolute;
+font-size: 16px;
+width: 100%;
+left: 158px;
+}
+
+.modal-content h3{
+    position: absolute;
+    left: 190px;
+    padding: 2.5rem 0 0 0 ;
+
+}
+.modal-content h4{
+    position: absolute;
+    left: 110px;
+    padding: .5rem 0 0 0 ;
+    border-left: 0;
+}
+.modal-content span{
+    position: absolute;
+    top: 20px;
+    right: -60px;
+    font-size: 24px;
+    color: red;
+
+}
+.modal-content p{
+position: absolute;
+bottom: 0;
+
+}
+.modal-content p.sumar{
+color: var(--first-color);
+display: flex;
+right: 86px;
+bottom: 0;
+font-size: 12px;
+
+}
+.modal-content p.sumar:hover{
+   cursor: pointer;
+   font-size: 18px;
+    }
+.modal-content p.restar{
+    color: var(--first-color);
+    display: flex;
+    left: 90px;
+    bottom: 2px;
+    font-size: 14px;
+    }
+.modal-content p.restar:hover{
+        cursor: pointer;
+        font-size: 18px;
+        }
+
+
+.total-p{
+   position: absolute;
+   right: -6px;
+   color: var(--first-color);
+}
+.modal-content >h3.delete-product{
+    position: absolute;
+    top: -30px;
+   left:  70px;
+   color: var(--first-color);
+
+ 
+
+}
+
+.modal-header-button:hover{
+    cursor: pointer;
+    color: var(--boton-color);
+}
+
+
+.modal-content >h3.delete-product:hover{
+    cursor: pointer;
+    font-size: 32px;
+}
+.total-content{
+    padding: 1.5rem;
+    color: var(--first-color);
+    border-top: .05rem solid var(--boton-color);
+    border-bottom: .05rem solid var(--boton-color);;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+
+}
+.Title-h1{
+    background-color: transparent;
+    display: flex;
+    justify-content: left;
+    align-items:left;
+    padding: 1rem;
+}
+
+.nav-close{
+position: absolute;
+top: 1rem;
+right: 1.5rem;
+}
+
+.cart-counte{
+padding: 0.25rem;
+background-color: var(--text-color);
+color: var(--body-color);
+border-radius: 50%;
+width: 1.5rem;
+height: 1.25rem;
+font-size: 10px;
+display: none;
+justify-content: center;
+align-items: center;
+position: absolute;
+border: 12px;
+top: 18px;
+right: -8px;
+}
+.cart-shop{
+    position: relative;
+}
+.main{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 55%;
+    height: 450px;
+    justify-content: left;
+    align-items: initial;
+    
+    padding: 5rem 2rem 5rem 2rem ;
+    
+}
+.main section{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: left;
+    text-align: justify;
+    background-color: transparent;
+    margin: 0;
+   
+}
+.Principal{
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+.Principal-h2{
+    padding: 0 0 1rem;
+    font-size: 3rem;
+    text-align: left;
+}
+.Principal-p{
+    padding: 1rem 0;
+    font-size: 1.25rem;
+}
+.Principal-h3{
+    padding: 1rem 0;
+    color: rgb(185, 48, 48);
+    font-size: 1.5rem;
+}
+.button1{
+    position: absolute;
+    background-color: rgb(177, 174, 174);
+    width: 130px;
+    height: 50px;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    bottom: -80px;
+}
+.button1:hover{
+    cursor: pointer;
+    background-color: var(--card-color);
+    border: .05rem solid var(--text-color);
+    font-size: 1rem;
+    color: white;
+}
+
+
+.button2{
+position: absolute;
+
+width: 170px;
+height: 60px;
+background-color: var( --button-color-alt);
+color: var( --container-color);
+margin: 0;
+padding: 0;
+border: 0;
+left: 130px;
+bottom: -85px;
+}
+
+.button2:hover{
+    cursor: pointer;
+    background-color: var(--first-color);
+    font-size: 1rem;
+}
+
+
+.article-producto{
+    position: absolute;
+    display: flex;
+    background-color: var(--first-color);
+    width: 40%;
+    top: 0;
+    right: 0;
+    height: 620px;
+    justify-content: center;
+    align-items: center;
+    z-index: -100;
+}
+.Conter-Producto{
+    background-color: transparent;
+    display: flex;
+    width: 100%;
+    
+    color: var(--text-color);
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-producto{
+    display: flex;
+    padding: 10rem 2rem 0 0;
+    gap: 5rem;
+    
+    
+}
+
+.Menu-Producto{
+    text-align: center;
+    border-right: .05rem solid var(--text-color);
+    padding: 0 2rem;
+    
+}
+.Menu-Producto:hover{
+    cursor: pointer;
+    color: var(--first-color);
+    border-right: .05rem solid var(--first-color);
+}
+.active{
+    background-color: var(--boton-color);
+    border-radius: 10%;
+}
+
+
+/*Producto-cart*/
+.Shop-content{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-left: 80px;
+    margin-right: 80px;
+    padding: 3rem;
+    
+}
+.Card-item{
+    box-shadow: 0 4px 8px var(--card-color);
+    max-width: 300px;
+    height: 350px;
+    margin: auto;
+    text-align: center;
+    font-family: Arial;
+    border-radius: 1rem;
+   
+}
+.Card-item > img{
+   
+    width: 100%;
+    height: 250px;
+    background-color: var(--text-color-light);
+    border-radius: 1rem 1rem 0 0 ;
+    padding: 1.5rem;
+}
+.Card-item > img:hover{
+    padding: 1rem;
+    background-color: var(--first-color);
+}
+.Prince{
+    position: absolute;
+    color: var(--first-color);
+    font-size: 22px;
+    margin-left: 10px;
+    padding: 2rem;
+    
+}
+
+
+.Stock-h4{
+    position: absolute;
+    border-left: .05rem solid var(--text-color);
+    height: 16px;
+    font-size: 16px;
+    margin-left: 90px;
+    margin-top: 36px;
+    padding: 0;
+    
+}
+.Name-h3{
+    position: absolute;
+    height: 16px;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-top: 36px;
+    padding: 1.5rem 0 0 2rem;
+}
+.card-button{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -25px 0 0 180px;
+    width: 50px;
+    height: 50px;
+    border-radius: 500%;
+    box-shadow: rgba(10, 10, 11, 0.2) 0px 4px 12px;
+    font-size: 30px;
+    border: transparent;
+
+}
+.card-button:hover{
+    cursor: pointer;
+    background-color: var(--boton-color);
+    font-size: 35px;
+    color: white;
+}
+
+
+
+
+@media screen and (max-width: 350px){
+    .bx-grid-alt{
+        display: flex;
+    } 
+}
+
+.inform-content{
+    background-color: var(--fin-color);
+    width: 100%;
+    height: 250px;
+    display: flex;
+    gap: 5rem;
+    padding: 5rem;
+    justify-content: center;
+    
+}
+.inform-content p{
+    font-size: 12px;
+    text-align: left;
+}
+.About{
+    width: 100px;
+}
+.Product{
+    width: 70px;
+}
+.Social div{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+}
+.Social svg{
+    height: 30px;
+    color: var(--text-color);
+}
+.Social svg:hover{
+    cursor: pointer;
+    
+}
+.fin{
+    width: 100%;
+    border-top: .05rem solid var(--text-color);
+    background-color: var(--fin-color);
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
