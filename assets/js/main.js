@@ -2,9 +2,11 @@ const shopContent =document.getElementById("ShopContent")
 const verCarrito=document.getElementById("verCarrito")
 const modalcontainer=document.getElementById("modal-container")
 const cantidadCarrito=document.getElementById("cart-counte")
+const btnTheme = document.getElementById("theme-btn")
+const selectCategory = document.getElementById("nav-producto")
+
 
 //cambio de color body
-const btnTheme = document.getElementById("theme-btn")
 const body=document.body
 const darkThemChange=()=>{
     {
@@ -19,9 +21,14 @@ const darkThemChange=()=>{
 }
 btnTheme.addEventListener("click", e=>darkThemChange())
 
+
+//Array del items
 let carrito= JSON.parse(localStorage.getItem("carrito"))||[]
 
-items.forEach((product)=>{
+//producto
+function cartItem(ProductsItems){
+  shopContent.innerHTML=""
+  ProductsItems.forEach((product)=>{
   let contentItem= document.createElement("div")
   contentItem.className="Card-item"
   contentItem.innerHTML = `
@@ -40,13 +47,15 @@ items.forEach((product)=>{
   //agregar al carrito
   
   comprar.addEventListener("click",()=>{
+    
     const repeat = carrito.some((repeatProduct)=>repeatProduct.id===product.id)
 
     if (repeat){
       carrito.map((prod)=>{
+        
         if (prod.id===product.id){
           prod.cantidad++
-          prod.quantity--
+          
         }
       })
     }else {
@@ -57,32 +66,57 @@ items.forEach((product)=>{
       quantity:product.quantity,
       name:product.name,
       cantidad:product.cantidad
+     
     }) 
+    
     }
+    pintarCarrito()
     carritoCounter()
     saveLocal()
   })
   
- 
   })
+  
+}
+cartItem(items)
+//-------------------------------------------------------------
+//Seleccionar la categoria
+
+  selectCategory.addEventListener("click",()=>{
+    let idProductoselect = document.querySelector(".Menu-Producto:hover")
+     let selectitemProduct = idProductoselect.id
+     if (selectitemProduct!=="Menu-Producto"){
+      const Productselect = items.filter(item => item.name===selectitemProduct)
+      cartItem(Productselect)
+     } else { 
+      cartItem(items)
+     }
+     
+    })
+
+
+
+//PintarCarrito
   const pintarCarrito =()=>{
-    //verCarrito.addEventListener("click",()=>{
     modalcontainer.innerHTML=""
     modalcontainer.style.display="flex"
     const modalHeader = document.createElement("div")
     modalHeader.className="modal-header"
     modalHeader.innerHTML= `                                                                         
     <h1 class="modal-header-title">Carrito</h1>
+    
     `
     modalcontainer.append( modalHeader)
-
     const modalbutton =document.createElement("h1")
     modalbutton.innerText="x"
     modalbutton.className="modal-header-button"
     modalbutton.addEventListener("click",()=>{
       modalcontainer.style.display="none"
+      
     })
     modalHeader.append(modalbutton)
+
+
     //Ingreso de carrito
     carrito.forEach((product)=>{
     let CarritoContent=document.createElement("div")
@@ -105,6 +139,8 @@ items.forEach((product)=>{
      sumar.addEventListener("click",()=>{
         if(product.cantidad >= 0){
         product.cantidad++
+         //stock
+         product.quantity--
       }
         saveLocal()
         pintarCarrito()
@@ -114,10 +150,15 @@ items.forEach((product)=>{
       restar.addEventListener("click",()=>{
         if(product.cantidad !== 0){
         product.cantidad--
+         //stock
+        product.quantity++
       }
+        saveLocal()
         pintarCarrito()
       })
 
+      //stock
+     
       //eliminar cart
       let eliminar =CarritoContent.querySelector(".delete-product")
       eliminar.addEventListener("click",()=>{
@@ -126,13 +167,20 @@ items.forEach((product)=>{
       })
 
     })
+    //Suma de Todos los Producto
     const total= carrito.reduce((acc,el)=> acc + el.price * el.cantidad,0)
 
     const totalBuying =document.createElement("div")
     totalBuying.className="total-content"
-    totalBuying.innerHTML=  `Total a pagar: $${total}`
+    totalBuying.innerHTML=  ` 
+    Total a pagar: $${total} 
+    <h4> Clear </h4>
+    `
+    
     modalcontainer.append(totalBuying)
+    
   }
+//Ver carrito
   verCarrito.addEventListener("click",pintarCarrito  )
 //eliminar producto
   const eliminarProducto=(id)=>{
@@ -151,7 +199,11 @@ items.forEach((product)=>{
     cantidadCarrito.innerText=carrito.length
   }
   carritoCounter()
+  //borrar todo el carrito
 
+
+  //button2
+ 
 
   //set Item
   const saveLocal =()=>{
